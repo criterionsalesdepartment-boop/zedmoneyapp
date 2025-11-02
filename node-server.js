@@ -8,7 +8,7 @@ const mv = import("mv")
 const moveFile = import("move-file")
 import {Server} from 'socket.io'
 const uri = "mongodb://localhost:27017"
-import upload from 'express-fileupload'
+const upload = import('express-fileupload')
 import fs from 'fs'
 import cors from 'cors';
 import {spawn} from "child_process";
@@ -17,12 +17,12 @@ const{PassThrough} = import("stream")
 import { MongoClient } from 'mongodb'
  
  // Enable command monitoring for debugging
-/* 
 const mongoClient = new MongoClient('mongodb+srv://shopmatesales:N6Npa7vcMIaBULIS@cluster0.mgv7t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { monitorCommands: true });
 mongoClient.connect()// Enable command monitoring for debugging
-*/
+/* 
 const mongoClient = new MongoClient(uri, { monitorCommands: true });
 mongoClient.connect()// Enable command monitoring for debugging
+*/
 //server calls management
 
 import express from 'express'
