@@ -1,0 +1,675 @@
+*{
+	cursor: pointer;
+	transition: all linear 200ms;
+	outline: none;
+   -webkit-tap-highlight-color: transparent;
+}
+p{
+	font-family: Calibri;
+	padding:0px;
+}
+body{
+	margin-left:2%;
+	width: 100%;
+	overflow-y:hidden;
+	overflow-x:hidden;
+}
+#background{
+	width:100%;
+	position:fixed;
+	margin-left: -2%;
+	margin-top: -2%;
+	transition: all linear 400ms;
+}
+#menuList{
+	list-style-type:none
+}
+#container{
+	position:fixed;
+	width:100%;
+	height:100%;
+	float:left;
+	display:block;
+	opacity:1;
+	z-index: 0;
+	margin-left: -2%
+}
+#menuBar{
+	position:fixed;
+	width:95%;
+	height: 40px;
+	float:left;
+	display:block;
+	opacity:1;
+	border-radius: 12px;
+	box-shadow: 0px 2px 3px black;
+	background: #d98141;
+	margin-left: 0%;
+	z-index: 7;
+}
+#menuIcon{
+	width: 27px;
+	margin-left:1%;
+	float:left;
+	margin-top: 1%;
+}
+#logoIcon{
+	width: 30px;
+	height: 30px;
+	box-shadow:0px 0px 3px black;
+	float:left;
+	border-radius:30px;
+	margin-top: 0.7%;
+	margin-left: 33%;
+}
+#titleIcon{
+	width: 131px;
+	float:left;
+	margin-left: 2%;
+	margin-top: 1%;
+}
+#loginText{
+	float:right;
+	margin-right:2%;
+	font-size: 11px;
+	font-family:calibri;
+	margin-top: 3%;
+	color:white
+}
+#signUpText{
+	float:right;
+	margin-right:2%;
+	font-size: 10px;
+	font-family:calibri;
+	margin-top: 3%;
+	color:white
+}
+#openingPage{
+	position:fixed;
+	width:100%;
+	height:100%;
+	float:left;
+	display:none;
+	opacity:0
+}
+#slideOne{
+	position:fixed;
+	width:100%;
+	height:80%;
+	float:left;
+	display:block;
+	opacity:0;
+	margin-left: -2%;
+	margin-top: 6%;
+}
+#welcomePage{
+	position:fixed;
+	width:100%;
+	height:100%;
+	float:left;
+	display:none;
+	opacity:0
+}
+#marketPage{
+	margin-top: 8.5%;
+	position:fixed;
+	width:100%;
+	height: 80%;
+	float:left;
+	display:none;
+	opacity:0;
+	background: white;
+	overflow: none
+}
+
+/*Market Place Section Elements*/
+
+#prime-ad-space{
+	float: left;
+	width: 20%;
+	height:100%;
+	margin:0px;
+	border-right: 1px solid black;
+	border-left: none;
+	border-top:none;
+	border-bottom: none
+}
+#main-space{
+	float: left;
+	width: 79%;
+	height:100%;
+	margin:0px;
+	border-right: 1px solid black;
+	border-left: none;
+	border-top:none;
+	border-bottom: none;
+	overflow-y:scroll
+}
+#banner{
+	float:left;
+	width: 100%;
+	height: 29%;
+	background: pink
+}
+#trendingItems{
+	float:left;
+	width:100%;
+}
+#topItems{
+	float:left;
+	width:100%;
+}
+#categorySelector{
+	float:left;
+	width:100%;
+}
+#mainFeed{
+	float:left;
+	width:100%;
+	height: auto;
+	margin-top: 3%;
+	margin-bottom: 10%;
+}
+#createAdBtn{
+	float:right;
+	width: 16%;
+	height: 22px;
+	border-radius: 12px;
+	background:#d98141;
+	color:white;
+	font-size: 14px;
+	box-shadow: -1px 2px 3px black;
+	margin-top: 14%;
+	margin-right: 1%;
+	border: none;
+}
+.market-place-header{
+	float:left;
+	font-size: 24px;
+	color:#d98141;
+	margin-left:2%;
+	margin-top:2%;
+	padding: 0px;
+	margin-bottom: 0px;
+}
+.quick-recycler{
+	float:left;
+	width:100%;
+	height: 300px;
+	margin: 0px;
+	margin-top: 1%;
+}
+/*Category Selector Object*/
+#categorySelector{
+	width:100%;
+	height:auto;
+	float:left
+}
+.cat-selector-holder{
+	width:auto;
+	height:auto;
+	float:left
+}
+.cat-selector-text{
+	margin: 10px;
+	color:grey;
+	float:left;
+	font-size:16px;
+	padding:0px
+}
+.cat-select-ind{
+	width:100%;
+	background:#d98141;
+	float:left;
+	height: 4px;
+}
+/*Category Selector Object*/
+/*Main Feed Object*/
+.main-feed-holder{
+	width: 96%;
+	margin-top:1%;
+	margin-bottom:0.5%;
+	height:auto;
+	float:right;
+	border-top-left-radius:20px;
+	border-bottom-left-radius:20px;
+	box-shadow:0px 0px 4px;
+	overflow:hidden
+}
+.main-feed-image{
+	float:left;
+	width: 120px;
+	height: 120px;
+}
+.main-feed-name{
+	float:left;
+	margin-left:5%;
+	margin-top:1%;
+	margin-bottom:0%;
+	width:63%;
+	font-size: 17px;
+	color:#d98141
+}
+.main-feed-desc{
+	float:left;
+	margin-left:5%;
+	margin-top: 0%;
+	margin-bottom:0%;
+	width:63%;
+	font-size:24px;
+	font-size: 9px;
+	color:grey
+}
+.main-feed-status-header{
+	float:left;
+	margin-top:1%;
+	margin-bottom:0%;
+	margin-left:5%;
+	width:63%;
+	font-size: 12px;
+	color:#d98141
+}
+.main-feed-status{
+	float:left;
+	margin-top: 0%;
+	margin-bottom:0%;
+	margin-left:5%;
+	width:63%;
+	font-size:16px;
+	color:green
+}
+.main-feed-price{
+	float:left;
+	width: 77%;
+	margin-top: 0%;
+	margin-bottom: 0%;
+	margin-right:3%;
+	font-size:30px;
+	color:black;
+	text-align:right;
+	font-weight: bolder;
+}
+/*Main Feed Object*/
+#area-selector{
+	width:100%;
+	height:auto;
+	float:left
+}
+#areaSelectText{
+	float:right;
+	font-weight: bold;
+	font-size: 15px;
+	margin-right: 0.5%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+#areaSelectDropDown{
+	float:right;
+	width:20px;
+	margin-right:2%
+}
+/*Market Place Trending Object*/
+.qr-holder{
+	float:left;
+	width: 186px;
+	height:auto;
+	overflow:hidden;
+	border-radius:20px;
+	box-shadow:0px 0px 4px black;
+	margin-left: 2%;
+}
+.qr-cond-holder{
+	width:auto;
+	height:auto;
+	float: right;
+	border-radius:10px;
+	background:#d98141;
+	margin-top: -18%;
+	margin-right: 2%;
+	box-shadow: 0px 2px 7px black;
+}
+.qr-cond-type{
+	float:left;
+	margin: 6px;
+	padding:0px;
+	color:white;
+	font-weight:bold;
+	font-size: 10px;
+}
+.qr-image{
+	float:left;
+	width: 186px;
+	height: 186px;
+}
+.qr-divider{
+	float:left;
+	width:100%;
+	height:3px;
+	background:#d98141
+}
+.qr-details-section{
+	float:left;
+	width:100%;
+	background:white
+}
+.qr-name{
+	float:left;
+	width: 95%;
+	margin-bottom:0px;
+	margin-top:1%;
+	color:#d98141;
+	font-size: 17px;
+	font-weight:bolder;
+	margin-left: 2%;
+}
+.qr-desc{
+	float:left;
+	width: 95%;
+	margin-bottom:0px;
+	margin-top:1%;
+	color:black;
+	font-size: 10px;
+	font-weight:lighter;
+	margin-left: 2%;
+}
+.qr-price{
+	float: left;
+	width: 95%;
+	margin-bottom:0px;
+	margin-top:1%;
+	color:black;
+	font-size: 22px;
+	font-weight: bolder;
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-bottom: 2%;
+	text-align: right;
+}
+/*Market Place Trending Object*/
+/*Market Place Section Elements*/
+#itemPage{
+	position:fixed;
+	width:100%;
+	height:100%;
+	float:left;
+	display:none;
+	opacity:0
+}
+#profilePage{
+	position:fixed;
+	width:100%;
+	height: 88%;
+	float:left;
+	display:none;
+	opacity:0;
+	margin-top: 5%;
+	overflow-y:scroll
+}
+/*Profile Page Elements*/
+#identitySection{
+	width:100%;
+	height:100%
+}
+#profileImage{
+	float:left;
+	width:60px;
+	height:60px;
+	margin-top: 3%;
+	margin-left: 3%;
+	border-radius:30px;
+	box-shadow: 0px 0px 3px black
+}
+#username{
+	float:left;
+	width:12%;
+	font-family:Calibri;
+	color:#d98141;
+	font-size:24px;
+	margin-left: 2%;
+	margin-right: 71%;
+	text-shadow: 0px 1px 1px black;
+	margin-top: 4%;
+}
+#usernameIns{
+	float:left;
+	width: 34%;
+	font-family:Calibri;
+	color:grey;
+	font-size:16px;
+	margin-left: 12.5%;
+	margin-top: -2.5%;
+}
+#addressAndStatus{
+	float: left;
+	width:95%;
+	margin-left:2%;
+	margin-right:2%;
+	background:white;
+	box-shadow: 0px 0px 3px black;
+}
+#catalogue-scroller{
+	float: left;
+	width:95%;
+	margin-left:2%;
+	margin-right:2%;
+	background:white;
+	box-shadow: 0px 0px 3px black;
+	margin-top: 3%;
+}
+#all-catalogue-scroller{
+	float: left;
+	width:95%;
+	margin-left:2%;
+	margin-right:2%;
+	background:white;
+	box-shadow: 0px 0px 3px black;
+	margin-top: 3%;
+}
+#catalogue-header{
+	float:left;
+	margin-left:2%;
+	margin-top:1%;
+	color:#d98141;
+	font-size:20px
+}
+#all-catalogue-header{
+	float:left;
+	margin-left:2%;
+	margin-top:1%;
+	color:#d98141;
+	font-size:20px
+}
+#all-co-cat-dd{
+	width:24px;
+	float:right;
+	margin-right:2%;
+	margin-top:1%;
+}
+#all-co-cat-text{
+	float:right;
+	margin-right:2%;
+	margin-top:1%;
+	color:black;
+	font-size:20px
+}
+#catalogueRecycler{
+	width:100%;
+	float:left
+}
+#all-catalogueRecycler{
+	width:100%;
+	float:left
+}
+#add-co-btn{
+	float:right;
+	margin:3%;
+	width: 20%;
+	background:#d98141;
+	border-radius:12px;
+	box-shadow: 0px 1px 3px black;
+	height: 37px;
+}
+#add-co-plus{
+	float:left;
+	margin-top: -6px;
+	margin-left: 19%;
+	font-size: 36px;
+	border-radius:12px;
+	color:white;
+	font-weight:bolder;
+	margin-bottom: 0;
+}
+#add-co-text{
+	float:left;
+	margin-top: 6%;
+	margin-left: 7%;
+	font-size:16px;
+	color:white;
+	border-radius:12px;
+	margin-bottom: 0px;
+}
+#chart-dsp{
+	float:left;
+	background: none;
+	width: 319px;
+	height: 187px;
+	margin-left: -12%;
+	margin-top: 2%;
+}
+#performanceChart{
+	width:100%;
+	height:100%
+}
+/*Catalogue Item Layout*/
+#co-mother{
+	float:left;
+	width:auto;
+	height:auto;
+}
+#co-delete{
+	float:left;
+	width:15px;
+	height:15px;
+	margin-top:1%;
+	margin-left: 5%;
+}
+#co-edit{
+	float:right;
+	width:15px;
+	height:15px;
+	margin-top:1%;
+	margin-right:1%;
+}
+#catalogueHolder{
+	float:left;
+	border-radius: 12px;
+	box-shadow:0px 2px 5px black;
+	width: 200px;
+	margin-left: 8%;
+	margin-bottom: 13%;
+	margin-top: 2%;
+}
+#cat-det{
+	width:100%
+}
+#catalogue-image{
+	float:left;
+	border-radius: 12px;
+	box-shadow:0px 2px 5px black;
+	width: 180px;
+	height: 180px;
+	margin-left:10px;
+	margin-top:10px
+}
+#catalogue-name{
+	width:90%;
+	text-align:left;
+	font-size:18px;
+	margin-left:4%;
+	color:#d98141;
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+#catalogue-desc{
+	width:90%;
+	text-align:left;
+	font-size:14px;
+	margin-left:4%;
+	color:grey;
+	float:left;
+	margin-top:1px;
+	margin-bottom:0px
+}
+#catalogue-price{
+	width:90%;
+	text-align:right;
+	font-size:24px;
+	margin-left:4%;
+	margin-top:0px;
+	color:black;
+	float:left;
+}
+#catalogue-buy{
+	width:90%;
+	text-align:center;
+	font-size:20px;
+	margin-left:4%;
+	margin-top:1px;
+	color:#d98141;
+	text-shadow:0px 2px 1px black;
+	float:left;
+}
+/*Catalogue Item Layout*/
+#traderStatus{
+	float:left;
+	color:#d98141;
+	margin-left:4%;
+	margin-top:2%;
+	font-size:20px;
+	margin-right: 90%;
+}
+#traderStatusActual{
+	float:left;
+	color:green;
+	margin-left:4%;
+	margin-top: -2%;
+	font-size:20px;
+	font-weight: bolder;
+}
+#physHolder{
+	float:right;
+	margin-top: -35%;
+	margin-bottom: 3%;
+}
+#ph-header{
+	color:#d98141;
+	text-shadow: 0px 0px 1px black;
+	font-size:24px
+}
+.physAddress{
+	float:right;
+	font-size:14px;
+	color:grey;
+	margin-left:70%;
+	margin-right:3%;
+	margin-top:1%;
+	margin-bottom: 0px;
+}
+/*Profile Page Elements*/
+#checkOutPage{
+	position:fixed;
+	width:100%;
+	height:100%;
+	float:left;
+	display:none;
+	opacity:0
+}
+#loginPage{
+	position:fixed;
+	width:100%;
+	height:100%;
+	float:left;
+	display:none;
+	opacity:0
+}

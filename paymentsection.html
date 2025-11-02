@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title> Payment Portal </title>
+		<link href="stylesheet.css" rel="stylesheet"/>
+		<link href="Images/circle_logo.png" rel="icon"/>
+		<meta name="description" content="Payments">
+		<meta name="viewport" content="width: device-width ,  initial-scale: 1.0">
+		<meta characterset = "UTF-8">	
+	</head>
+
+	<body>
+
+		<img id="headerImage" src="Images/header.jpg"/>
+		<div id="mainSection">
+		
+			<div id="profileImageHolder">
+				<img id="profileImage" src="Images/man.png"/>
+			</div>
+		
+			<p id="usernameText">User Name</p>
+			<p id="headerText">Welcome to Youth Empowerment Application - Payments Section</p>
+			<p id="insText">Click on the button below to start your payment process</p>
+			<div id="initPaymentProcess" style="max-width:1000px;" ></div>
+			<button id="startBtn">Make Payment</button>
+		
+		</div>
+		
+		<script src="node_modules/socket.io/client-dist/socket.io.js"></script>
+
+		<script src="https://www.paypal.com/sdk/js?client-id=ATGuAAoM45QuPR0UcEwq54WYtG-nlLl0LKzapqHlaQzeI8OxkkOdkvM7FPIBOe0RMZwshWoQHyAqiajg&components=buttons&currency=USD">
+		</script>
+		
+		<script>
+
+			let transferId;
+			let socket = io();
+			
+			const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString)
+            
+            let paymentData = null
+            let userProfile = null
+            
+            
+			let userId;
+			
+            userId = urlParams.get("id")
+			
+            socket.emit("get-payment-data",{
+                "userId": userId
+            })
+        
+
+            async function getUserData(){
+				var output = false
+                let getData = await fetch("/get-fresh-user-data",{
+                    method:"POST",
+                    body:JSONStringify({"accessorId":userId}),
+                    headers:{"Content-Type":"application/json"}
+                })
+                let res = await getData.json()
+                if(res.status === "success"){
+                    userProfile = res.data
+					output = true
+                }
+				return output
+            }
+            
+            
+            
+            async function loadImage(){
+                socket.emit("set-media-params",{
+                    "ownerId":userProfile.id,
+                    "mediaId":userProfile.currentProfileImage.id,
+                    "format": userProfile.currentProfileImage.format
+                })
+                let getImage = await fetch(`/get-user-image/${userId}`)
+    
+                let image = await getImage.blob()
+                
+                let url = URL.createObjectURL(blob)
+                
+                profileImage.src = url
+            }
+            
+            socket.emit("get-payment-request",{
+                "accessorId":userId
+            })
+            
+            socket.on("recieve-payment-request",async(data)=>{
+                if(data["accessorId"] == userId){
+                    paymentData = data["data"]
+                    let result = await getUserData()
+					if(result == true){
+						loadImage()
+					}
+                }
+            })
+            
+            
+            
+            
+            //Buttons & events
+            let paymentBtn = document.getElementById("startBtn")
+            let paypalBtns = document.getElementById("initPaymentProcess")
+            
+            paymentBtn.addEventListener("click",()=>{
+                paymentBtn.style.opacity = "0"
+                setTimeout(()=>{
+                    paymentBtn.style.display = "none"
+                    paypalBtns.style.display = "block"
+                    setTimeout(()=>{
+                        paypalBtns.style.opacity="1"
+                    },30)
+                },100)
+            })
+
+			let cancelSequence = ()=>{
+			    socket.on("send-cash-transfer-status",{
+					"accessorId":userId,
+			        "refCode":paymentData.id,
+			        "status":"Cancelled"
+			    })
+				setTimeout(()=>{
+					setTimeout(alert("You have cancelled your order"),1000)
+				},300)
+			}	
+			
+			let errorSequence = ()=>{
+			    socket.on("send-cash-transfer-status",{
+			        "refCode":paymentData.id,
+			        "status":"Error"
+			    })
+				setTimeout(()=>{
+					setTimeout(alert("Something went wrong trying to process your order. Please try again later."),1000)
+				},300)
+			}	
+			
+			let approveSequence = async(data)=>{
+				let get = await fetch('api/orders/capture', {
+
+					method: 'POST',
+
+					body: JSON.stringify({
+
+						orderID: transferId,
+						intent: "CAPTURE",
+						"data":paymentData
+
+					}),
+					"headers":{"Content-Type":"application/json"}
+					
+
+				})
+				
+				let response = await get.json()
+				
+				if(response.status === "COMPLETED"){
+				
+					
+					let x = await update.json()
+					
+					socket.on("send-cash-transfer-status",{
+        			     "refCode":paymentData.id,
+        			     "status":"Complete"
+        			})
+					
+				}else{
+				    socket.on("send-cash-transfer-status",{
+        			     "refCode":paymentData.id,
+        			     "status":"Cancelled"
+        			})
+					setTimeout(alert("Something went wrong. Please try again later"),300)
+				}
+				
+				
+				
+			}	
+			
+			paypal.Buttons({
+
+				  "style": {
+
+					"layout": "vertical",
+
+					"color":  "blue",
+
+					"shape" :  "rect",
+
+					"label":  "paypal"
+
+				  },
+				  createOrder: async function(data,actions) {
+
+				  const response = await fetch("/create-paypal-order", {
+
+					method: "POST",
+
+					headers: {
+							'content-type': 'application/json'
+						},
+
+					body: JSON.stringify(paymentData)
+
+				  })
+
+				  var data = await response.json()
+				  
+				  transferId = data.id
+				  
+				  return data.id
+
+				},
+				onApprove: async function(data,actions) {
+
+					await approveSequence(data)
+
+				},
+				onCancel(data) {
+
+					cancelSequence()
+
+				},
+				onError(){
+
+					errorSequence()
+
+				}
+
+			}).render('#initPaymentProcess')
+		</script>
+	</body>
+
+</html>

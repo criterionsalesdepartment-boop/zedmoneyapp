@@ -1,0 +1,3 @@
+//Adjustments
+
+ResportedItemsAndUsers - header and recycler must disappear if no content found

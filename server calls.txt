@@ -1,0 +1,9 @@
+//Server calls
+
+"/check-time"
+"/update-user-data"
+"/login-user"
+"/sign-up-user"
+"/add-new-item"
+"/get-payment-status"
+"/get-fresh-user-data"

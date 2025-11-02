@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title> Zed Money App </title>
+		<link href="Assets/stylesheet.css" rel="stylesheet"/>
+		<link href="Media/circle_logo.png" rel="icon"/>
+		<meta name="description" content="Payments">
+		<meta name="viewport" content="width: device-width ,  initial-scale: 1.0">
+		<meta characterset = "UTF-8">	
+	</head>
+
+	<body id="mother">
+		<img id="background" src="Media/splash.png"/>
+		<div id="menuBar">
+			<img id="menuIcon" src="Media/menuinactive.png"/>
+			<img id="logoIcon" src="Media/circle_logo.png"/>
+			<img id="titleIcon" src="Media/title_text.png"/>
+			<p id="loginText">Login</p>
+			<p id="signUpText">Sign Up</p>
+		</div>
+		<div id="menuHolder">
+			<ul id="menuList"></ul>
+		</div>
+		<div id="container">
+			<div id="openingPage">
+				<img src="Media/slideOne.png" id="slideOne"/>
+			</div>
+			<div id="welcomePage"></div>
+			<div id="marketPage">
+			
+				<div id="prime-ad-space"></div>
+				<div id="main-space">
+					<div id="banner">
+						<button id="createAdBtn">Create Ad</button>
+					</div>
+					<div id="trendingItems">
+						<p class="market-place-header" id="trendingPosts">Trending Items</p>
+						<div class="quick-recycler">
+							<div class="qr-holder">
+								<image class="qr-image" src="Media/splash.png"/>
+								<div class="qr-cond-holder">
+									<p class="qr-cond-type">new</p>
+								</div>
+								<div class="qr-divider"></div>
+								<div class="qr-details-section">
+									<p class="qr-name">Item Name</p>
+									<p class="qr-desc">Item Description</p>
+									<p class="qr-price">0.00 USD</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="topItems">
+					
+						<p class="market-place-header">Top sellers</p>
+						<div class="quick-recycler" id="topSellerPosts">
+							<div class="qr-holder">
+								<image class="qr-image" src="Media/splash.png"/>
+								<div class="qr-cond-holder">
+									<p class="qr-cond-type">new</p>
+								</div>
+								<div class="qr-divider"></div>
+								<div class="qr-details-section">
+									<p class="qr-name">Item Name</p>
+									<p class="qr-desc">Item Description</p>
+									<p class="qr-price">0.00 USD</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="area-selector">
+						<img id="areaSelectDropDown" src="Media/down.png"/>
+						<p id="areaSelectText">Your City(Chingola)</p>
+					</div>
+					<div id="categorySelector">
+						<div class="cat-selector-holder">						
+							<p class="cat-selector-text">Category</p>
+							<div class="cat-select-ind"></div>
+						</div>
+					</div>
+					<div id="mainFeed">
+						<div class="main-feed-holder">
+							<img class="main-feed-image" src="Media/splash.png"/>
+							<p class="main-feed-name">Item Name</p>
+							<p class="main-feed-desc">description</p>
+							<p class="main-feed-status-header">Status</p>
+							<p class="main-feed-status">Grade A</p>
+							<p class="main-feed-price">0.00 USD</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div id="itemPage"></div>
+			<div id="profilePage">
+				<div id="identitySection">
+					<img id="profileImage" src="Media/circle_logo.png"/>
+					<p id="username">Username</p>
+					<p id="usernameIns">Download app to change profile image</p>
+					<div id="addressAndStatus">
+						<p id="traderStatus">Status</p>
+						<p id="traderStatusActual">Grade A</p>
+						<div id="chart-dsp">
+							<canvas id="performanceChart"></canvas>
+						</div>
+						<div id="physHolder">
+							<p class="physAddress" id="ph-header">Physical Address</p>
+							<p class="physAddress" id="ph-redAddOne">Res Add One</p>
+							<p class="physAddress" id="ph-redAddTwo">Res Add Two</p>
+							<p class="physAddress" id="ph-redAddThree">Res Add Three</p>
+							<p class="physAddress" id="ph-districtRegionProvince">District/Region/Province</p>
+							<p class="physAddress" id="ph-city">city</p>
+							<p class="physAddress" id="ph-country">country</p>
+							<p class="physAddress" id="ph-country">zip code</p>
+						</div>
+					</div>
+					<div id="catalogue-scroller">
+						<p id="catalogue-header">Featured Items</p>
+						<div id="catalogueRecycler">
+							<div id="co-mother">
+								<img id="co-delete" src="Media/close.png"/>
+								<img id="co-edit" src="Media/edit.png"/>
+								<div id="catalogueHolder">
+									<img id="catalogue-image" src="Media/splash.png"/>
+									<div id="cat-det">
+										<p id="catalogue-name">Item Name</p>
+										<p id="catalogue-desc">A brief description of the item on sale</p>
+										<p id="catalogue-price">0.00 USD</p>
+										<p id="catalogue-buy">Add To Cart</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="all-catalogue-scroller">
+						<div id="all-co-items-header">						
+							<p id="all-catalogue-header">All Items</p>
+							<img id="all-co-cat-dd" src="Media/down.png"/>
+							<p id="all-co-cat-text">All</p<>
+						</div>
+						<div id="all-catalogueRecycler">
+							<div id="co-mother">
+								<img id="co-delete" src="Media/close.png"/>
+								<img id="co-edit" src="Media/edit.png"/>
+								<div id="catalogueHolder">
+									<img id="catalogue-image" src="Media/splash.png"/>
+									<div id="cat-det">
+										<p id="catalogue-name">Item Name</p>
+										<p id="catalogue-desc">A brief description of the item on sale</p>
+										<p id="catalogue-price">0.00 USD</p>
+										<p id="catalogue-buy">Add To Cart</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="add-co-btn">
+							<p id="add-co-plus">+</p>
+							<p id="add-co-text">Add Item</p>
+						</div>
+					</div>
+					</div>
+				</div>
+			
+			</div>
+			<div id="checkOutPage"></div>
+			<div id="loginPage"></div>
+			<div id="fogotPasswordPage"></div>
+			<div id="paymentOptionsPage"></div>
+			<div id="resultWindow"></div>
+			<div id="detailsWindow"></div>
+		</div>
+		
+		
+		<script src="https://cdn.jsdelivr.net/npm/chart.js">
+		</script>
+		<script src="Assets/logic.js"></script>
+	</body>
+</html>
