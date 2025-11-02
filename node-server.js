@@ -8,7 +8,7 @@ const mv = import("mv")
 const moveFile = import("move-file")
 import {Server} from 'socket.io'
 const uri = "mongodb://localhost:27017"
-import upload from 'express-fileupload'
+import upload from 'express-file-upload'
 import fs from 'fs'
 import cors from 'cors';
 import {spawn} from "child_process";
