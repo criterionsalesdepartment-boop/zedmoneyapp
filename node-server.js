@@ -17,7 +17,7 @@ const{PassThrough} = import("stream")
 import { MongoClient } from 'mongodb'
  
  // Enable command monitoring for debugging
-const mongoClient = new MongoClient('mongodb+srv://shopmatesales:N6Npa7vcMIaBULIS@cluster0.mgv7t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { monitorCommands: true });
+const mongoClient = new MongoClient('mongodb+srv://criterionsalesdepartment_db_user:<Lukundojay1>@cluster0.p5rk0nj.mongodb.net/', { monitorCommands: true });
 mongoClient.connect()// Enable command monitoring for debugging
 /* 
 const mongoClient = new MongoClient(uri, { monitorCommands: true });
