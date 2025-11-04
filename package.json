@@ -6,19 +6,46 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Criterion Programming",
   "license": "ISC",
+  "description": "# ZedMoneyApp",
+  "type": "module",
   "dependencies": {
-    "body-parser": "^2.2.0",
-    "express": "^5.1.0",
-    "express-fileupload": "^1.5.2",
-    "mongodb": "^6.18.0",
+    "axios": "^1.7.7",
+    "base-64": "^1.0.0",
+    "body-parser": "^1.20.3",
+    "bson": "5.0.0",
+    "config": "^3.3.12",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-fileupload": "^1.5.1",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "mongodb": "^5.1.0",
+    "mongoose": "7.2.0",
     "move-file": "^3.1.0",
     "mv": "^2.1.1",
+    "node": "20.15.0",
     "node-fetch": "^3.3.2",
-    "path": "^0.12.7",
+    "nodemon": "^3.1.7",
     "socket.io": "^4.8.1",
-    "socket.io-stream": "^0.9.1"
+    "webpack": "^5.96.1"
   },
-  "type": "module"
+  "engines": {
+    "node": "20.15.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShopMateServer/ShopMateServerSystem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ShopMateServer/ShopMateServerSystem/issues"
+  },
+  "homepage": "https://github.com/ShopMateServer/ShopMateServerSystem#readme"
 }
