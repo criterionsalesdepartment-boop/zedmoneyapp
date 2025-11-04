@@ -8,7 +8,7 @@ const mv = import("mv")
 const moveFile = import("move-file")
 import {Server} from 'socket.io'
 const uri = "mongodb://localhost:27017"
-const upload = import('express-fileupload')
+import upload from 'express-fileupload'
 import fs from 'fs'
 import cors from 'cors';
 import {spawn} from "child_process";
@@ -17,12 +17,12 @@ const{PassThrough} = import("stream")
 import { MongoClient } from 'mongodb'
  
  // Enable command monitoring for debugging
-const mongoClient = new MongoClient('mongodb+srv://criterionsalesdepartment_db_user:<Lukundojay1>@cluster0.p5rk0nj.mongodb.net/', { monitorCommands: true });
-mongoClient.connect()// Enable command monitoring for debugging
 /* 
-const mongoClient = new MongoClient(uri, { monitorCommands: true });
+const mongoClient = new MongoClient('mongodb+srv://shopmatesales:N6Npa7vcMIaBULIS@cluster0.mgv7t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { monitorCommands: true });
 mongoClient.connect()// Enable command monitoring for debugging
 */
+const mongoClient = new MongoClient(uri, { monitorCommands: true });
+mongoClient.connect()// Enable command monitoring for debugging
 //server calls management
 
 import express from 'express'
@@ -80,6 +80,18 @@ let serverTime = {
 
 async function timeProcessor(){
 	
+	const now = new Date();
+    const timezoneOffsetMinutes = now.getTimezoneOffset();
+    
+    // getTimezoneOffset() returns the difference in minutes between UTC and local time.
+    // It returns a positive value if the local time zone is behind UTC (e.g., -120 for GMT+2)
+    // and a negative value if the local time zone is ahead of UTC (e.g., 60 for GMT-1).
+    // To get the offset in hours as we typically understand it (e.g., +2 for GMT+2),
+    // we need to divide by -60.
+    
+    const timezoneOffsetHours = Math.round(timezoneOffsetMinutes / (-60));
+
+	
 	allocateTime()
 	
 	serverTime["date"] = currentDate,
@@ -87,6 +99,7 @@ async function timeProcessor(){
 	serverTime["year"] = currentYear,
 	serverTime["hours"] = currentHours,
 	serverTime["mins"] = currentMins
+	serverTime["timezone"] = timezoneOffsetHours
 	
 	let d1 = serverTime.date
 	let m1 = serverTime.month
@@ -101,8 +114,41 @@ async function timeProcessor(){
 	}
 	
 	dayTrack = serverTime.date
-	
 }
+
+function checkTime(date){
+    let output = false 
+    
+    if(serverTime.timezone == date.timezone){
+        if(
+            serverTime.date == date.date &&
+            serverTime.month == date.month &&
+            serverTime.year == date.year
+            ){
+            output = true
+        }
+    }else{
+        let utz = date.timezone 
+        let stz = serverTime.timezone 
+        let diff = utz-stz 
+        let targetHours = serverTime.hours + diff
+        if(
+            serverTime.month == date.month &&
+            serverTime.year == date.year
+        ){
+            if(date.date == serverTime.date){
+                output = true
+            }else{
+                if(date.hours == targetHours || date.hours == (targetHours+1) || date.hours == (targetHours-1)){
+                    output = true
+                }
+            }
+        }
+    }
+    
+    return output
+}	
+
 
 async function removeDeletedUsers(){
 	try{
@@ -751,15 +797,10 @@ app.get("/get-user-data/:id", async(request,response)=>{
 
 app.post("/check-time",(request,response)=>{
 	let data = request.body 
-	
-	if(
-		data.year == serverTime.year &&
-		data.month == serverTime.month &&
-		data.date == serverTime.date 
-	){
+	if(checkTime(data) == true){
 		response.send(JSON.stringify({"status":true}))
 	}else{
-	response.send(JSON.stringify({"status":false}))
+	    response.send(JSON.stringify({"status":false}))
 	}
 })
 
@@ -2731,6 +2772,9 @@ app.post("/get-category-performance-data",async(request,response)=>{
 		}
 	})
 
+async function convertValue(){
+	
+}
 
 async function GetTransPerformance(limitDate,inx){
     let output = null
@@ -2800,7 +2844,8 @@ async function GetTransPerformance(limitDate,inx){
 						let value = weekOne[x].amountProcessed
 						total = total+value
 					}
-					output["week 1"] = Math.floor(total/weekOne.length)
+					let wl = weekOne.length
+					output["week 1"] = Math.floor(total/wl)
 				}
 				if(i == 1){
 					var total = 0.0
@@ -2808,7 +2853,8 @@ async function GetTransPerformance(limitDate,inx){
 						let value = weekTwo[x].amountProcessed
 						total = total+value
 					}
-					output["week 2"] = Math.floor(total/weekOne.length)
+					let w2 = weekTwo.length
+					output["week 2"] = Math.floor(total/wl)
 				}
 				if(i == 2){
 					var total = 0.0
@@ -2816,7 +2862,8 @@ async function GetTransPerformance(limitDate,inx){
 						let value = weekThree[x].amountProcessed
 						total = total+value
 					}
-					output["week 3"] = Math.floor(total/weekOne.length)
+					let w3 = weekThree.length
+					output["week 3"] = Math.floor(total/wl)
 				}
 				if(i == 3){
 					var total = 0.0
@@ -2824,7 +2871,8 @@ async function GetTransPerformance(limitDate,inx){
 						let value = weekFour[x].amountProcessed
 						total = total+value
 					}
-					output["week 4"] = Math.floor(total/weekOne.length)
+					let wl = weekFour.length
+					output["week 4"] = Math.floor(total/wl)
 				}
 				i = i+1
 			}
